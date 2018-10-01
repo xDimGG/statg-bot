@@ -50,13 +50,13 @@ exports.processMessage = function processMessage(
   message,
 ) {
   if (message.length < BASE_CMD.length) return;
+  const args = message.split(' ');
 
-  // if message starts with '!statg'
-  if (message.substring(0, BASE_CMD.length) === BASE_CMD) {
+  // if message starts with '!statg' + an optional space
+  if (args.shift() === BASE_CMD) {
     logger.debug('---------------------------------');
 
     const user = new DiscordUser(userId, username, channelId);
-    let args = message.substring(BASE_CMD.length).split(' ');
 
     // if no command was given, do nothing
     if (args.length < 2) {
